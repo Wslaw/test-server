@@ -5,7 +5,9 @@ import { contacts } from "./contacts.js";
 import moment from "moment";
 
 import fs from "fs/promises"
-import cors from "cors"
+import cors from "cors";
+
+import { router } from "./routes/api/contacts.js";
 
 const app = express();
 
@@ -25,13 +27,18 @@ app.use((req, res, next) => {
 })
 */
 // ***************************************************************
+
+app.use("/api/contacts", router)
+
+
+
 // app.use(async(req, res, next) => {
 //     const { method, url } = req;
 //     const date = moment().format("DD-MM-YYYY_hh:mm:ss");
 //     await fs.appendFile("./server.log", `\n${method} ${url} ${date}`);
 //     next();
 // })
-
+/*
 app.get('/products', async (req, res) => {
     
     res.json([])
@@ -50,5 +57,8 @@ app.use((req, res, next) => {
         message: "Not found"
     })
 })
+*/
+
+
 
 app.listen(3001,()=>console.log("--Serveris running--"))
